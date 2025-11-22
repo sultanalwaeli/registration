@@ -1,551 +1,1029 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج المقترحات والآراء - منصة أثر</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* الأنماط تبقى كما هي */
-        :root {
-            --primary: #1a5f7a;
-            --secondary: #159895;
-            --accent: #57c5b6;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --text: #34495e;
-            --border-radius: 12px;
-            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>تسجيل حضور أولياء الأمور | مدرسة محمد بن سليمان الغافري</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3c72;
+      --secondary: #2a5298;
+      --accent: #ffd700;
+      --light: rgba(255, 255, 255, 0.1);
+      --dark: #ffffff;
+      --success: #4CAF50;
+      --error: #ff6b6b;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
+      font-family: 'El Messiri', 'Tajawal', sans-serif;
+    }
 
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 18px; /* حجم خط أساسي مناسب للهواتف */
+    }
 
-        .suggestions-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-        }
+    /* الهيدر المعدل */
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+      height: auto;
+      min-height: 100px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .logo {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.7));
+      border-radius: 50%;
+    }
+    
+    .school-name {
+      font-size: 1.1rem;
+      color: #ffd700;
+      font-weight: bold;
+    }
 
-        .suggestions-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
+    .meeting-title {
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 5px 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      line-height: 1.4;
+    }
 
-        .suggestions-header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+    .app {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 15px 10px 100px;
+    }
 
-        .suggestions-header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-        .suggestions-body {
-            padding: 30px;
-        }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), #ffed4e);
+    }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+    .card-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
+    header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            font-size: 1.1rem;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.9);
-        }
+    h1 {
+      font-size: 1.8rem; /* حجم أكبر للهواتف */
+      margin: 10px 0 8px;
+      color: var(--accent);
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      line-height: 1.3;
+    }
 
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(87, 197, 182, 0.3);
-            background: white;
-        }
+    .subtitle {
+      font-size: 1.1rem; /* حجم مناسب للهواتف */
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
 
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
 
-        .radio-group, .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
-        }
+    .badge {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(255, 215, 0, 0.2);
+      color: var(--accent);
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
 
-        .radio-option, .checkbox-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-        .radio-option input, .checkbox-option input {
-            width: auto;
-        }
+    /* شريط الإحصاءات */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
 
-        .form-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+    .stat-card {
+      border-radius: 16px;
+      padding: 12px 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+    }
 
-        button {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 700;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(26, 95, 122, 0.3);
-        }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
 
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(26, 95, 122, 0.4);
-        }
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.2;
+    }
 
-        button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
+    .stat-sub {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 4px;
+    }
 
-        button.secondary {
-            background: #f8f9fa;
-            color: var(--dark);
-            border: 2px solid #e0e0e0;
-        }
+    .stat-card.highlight {
+      background: rgba(255, 215, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.3);
+    }
 
-        button.secondary:hover {
-            background: #e9ecef;
-        }
+    .stat-card.success {
+      background: rgba(76, 175, 80, 0.15);
+      border-color: rgba(76, 175, 80, 0.3);
+    }
 
-        .confirmation-message {
-            display: none;
-            background: rgba(46, 204, 113, 0.1);
-            color: var(--success);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            border-right: 4px solid var(--success);
-            margin-top: 20px;
-        }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-        .error-message {
-            display: none;
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--danger);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-top: 15px;
-            text-align: center;
-            border-right: 4px solid var(--danger);
-        }
+    .field {
+      margin-bottom: 15px;
+    }
 
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
+    label {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-        .loading-spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--accent);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 16px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 1.1rem;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--dark);
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    input::placeholder {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
 
-        .required {
-            color: var(--danger);
-        }
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+      transform: translateY(-2px);
+    }
 
-        @media (max-width: 768px) {
-            .suggestions-container {
-                margin: 10px;
-            }
-            
-            .suggestions-body {
-                padding: 20px;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
+    .hint {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .parent-wrapper {
+      position: relative;
+    }
+
+    .suggestions {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      margin-top: 5px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 10;
+    }
+
+    .suggestion-item {
+      padding: 12px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.15s ease;
+      color: #1e3c72;
+      border-bottom: 1px solid rgba(30, 60, 114, 0.1);
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item:hover {
+      background: rgba(255, 215, 0, 0.2);
+    }
+
+    .suggestion-highlight {
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .suggestion-tag {
+      font-size: 0.8rem;
+      color: #1e3c72;
+      background: rgba(30, 60, 114, 0.1);
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-inline-start: 8px;
+    }
+
+    .children-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 180px;
+    }
+
+    .children-list {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 15px;
+      flex: 1;
+      max-height: 40vh;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .child-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+    }
+
+    .child-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .child-item input[type="checkbox"] {
+      margin-left: 12px;
+      width: 22px;
+      height: 22px;
+      accent-color: var(--accent);
+    }
+
+    .child-label-main {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .child-label-class {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-inline-start: 6px;
+    }
+
+    .child-item.active {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: rgba(255, 215, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffed4e);
+      color: #1e3c72;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-primary:disabled {
+      background: rgba(255, 255, 255, 0.3);
+      color: rgba(30, 60, 114, 0.5);
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-icon {
+      margin-inline-start: 8px;
+      font-size: 1.1rem;
+    }
+
+    .status {
+      margin-top: 12px;
+      font-size: 1rem;
+      min-height: 20px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .status.success {
+      background: rgba(76, 175, 80, 0.2);
+      color: var(--accent);
+    }
+    .status.error {
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+    }
+    .status.info {
+      background: rgba(74, 144, 226, 0.2);
+      color: var(--accent);
+    }
+
+    /* الشريط السفلي الثابت */
+    .bottom-bar {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.25);
+      color: var(--dark);
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 0.9rem;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+      z-index: 50;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bottom-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .bottom-label {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.85rem;
+    }
+
+    .bottom-value {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    /* تحسينات للهواتف الصغيرة */
+    @media (max-width: 480px) {
+      body {
+        font-size: 16px;
+      }
+      
+      .header {
+        padding: 12px 15px;
+        min-height: 90px;
+      }
+      
+      .meeting-title {
+        font-size: 1.1rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .app {
+        padding: 10px 8px 90px;
+      }
+      
+      .container {
+        padding: 15px 12px;
+        border-radius: 18px;
+      }
+      
+      .stats-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      
+      .stat-card {
+        padding: 10px;
+      }
+      
+      .stat-value {
+        font-size: 1.3rem;
+      }
+      
+      input[type="text"],
+      input[type="tel"] {
+        padding: 14px 12px;
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 16px 20px;
+        font-size: 1.1rem;
+      }
+      
+      .bottom-bar {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .bottom-value {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .badge-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .badge {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .meeting-title {
+        font-size: 1rem;
+      }
+      
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* تحسينات للأجهزة الكبيرة */
+    @media (min-width: 768px) {
+      .app {
+        padding: 20px 15px 110px;
+      }
+      
+      .container {
+        padding: 25px 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .meeting-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="suggestions-container">
-        <div class="suggestions-header">
-            <h1><i class="fas fa-comments"></i> نموذج المقترحات والآراء</h1>
-            <p>نرحب بملاحظاتكم ومقترحاتكم القيمة التي تساعدنا على تحسين الخدمات المقدمة</p>
-        </div>
-        
-        <div class="suggestions-body">
-            <!-- النموذج المخفي للإرسال -->
-            <form id="hiddenForm" method="GET" target="hiddenFrame" style="display: none;">
-                <input type="hidden" name="timestamp" id="hiddenTimestamp">
-                <input type="hidden" name="senderType" id="hiddenSenderType">
-                <input type="hidden" name="fullName" id="hiddenFullName">
-                <input type="hidden" name="contactInfo" id="hiddenContactInfo">
-                <input type="hidden" name="studentId" id="hiddenStudentId">
-                <input type="hidden" name="suggestionType" id="hiddenSuggestionType">
-                <input type="hidden" name="category" id="hiddenCategory">
-                <input type="hidden" name="title" id="hiddenTitle">
-                <input type="hidden" name="details" id="hiddenDetails">
-                <input type="hidden" name="impact" id="hiddenImpact">
-                <input type="hidden" name="followup" id="hiddenFollowup">
-                <input type="hidden" name="improvementIdeas" id="hiddenImprovementIdeas">
-            </form>
-
-            <!-- iframe مخفي لاستقبال الرد -->
-            <iframe name="hiddenFrame" id="hiddenFrame" style="display: none;"></iframe>
-
-            <!-- النموذج الرئيسي -->
-            <form id="suggestionsForm">
-                <div class="form-group">
-                    <label for="senderType">أنتم <span class="required">*</span></label>
-                    <select id="senderType" required>
-                        <option value="">اختر نوع المرسل</option>
-                        <option value="طالب">طالب</option>
-                        <option value="ولي أمر">ولي أمر</option>
-                        <option value="معلم">معلم</option>
-                        <option value="آخر">آخر</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fullName">الاسم الكامل <span class="required">*</span></label>
-                    <input type="text" id="fullName" required placeholder="أدخل اسمك الكامل">
-                </div>
-                
-                <div class="form-group">
-                    <label for="contactInfo">معلومات التواصل <span class="required">*</span></label>
-                    <input type="text" id="contactInfo" required placeholder="رقم الهاتف أو البريد الإلكتروني">
-                </div>
-                
-                <div class="form-group">
-                    <label for="studentId">رقم الطالب (إن وجد)</label>
-                    <input type="text" id="studentId" placeholder="مثال: AB1234">
-                </div>
-                
-                <div class="form-group">
-                    <label>نوع المقترح/الملاحظة <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="type-suggestion" name="suggestionType" value="مقترح تطوير" required>
-                            <label for="type-suggestion">مقترح تطوير</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="type-complaint" name="suggestionType" value="شكوى">
-                            <label for="type-complaint">شكوى</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="type-inquiry" name="suggestionType" value="استفسار">
-                            <label for="type-inquiry">استفسار</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="type-praise" name="suggestionType" value="شكر وتقدير">
-                            <label for="type-praise">شكر وتقدير</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="suggestionCategory">التصنيف <span class="required">*</span></label>
-                    <select id="suggestionCategory" required>
-                        <option value="">اختر التصنيف المناسب</option>
-                        <option value="العملية التعليمية">العملية التعليمية</option>
-                        <option value="منصة أثر الإلكترونية">منصة أثر الإلكترونية</option>
-                        <option value="الكادر التعليمي">الكادر التعليمي</option>
-                        <option value="مرافق المدرسة">مرافق المدرسة</option>
-                        <option value="الأنشطة الطلابية">الأنشطة الطلابية</option>
-                        <option value="الإدارة المدرسية">الإدارة المدرسية</option>
-                        <option value="أخرى">أخرى</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="suggestionTitle">عنوان المقترح/الملاحظة <span class="required">*</span></label>
-                    <input type="text" id="suggestionTitle" required placeholder="اكتب عنواناً موجزاً للملاحظة">
-                </div>
-                
-                <div class="form-group">
-                    <label for="suggestionDetails">تفاصيل المقترح/الملاحظة <span class="required">*</span></label>
-                    <textarea id="suggestionDetails" required placeholder="اشرح بالتفصيل مقترحك أو ملاحظتك..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>كيف تصف تأثير هذه المشكلة أو الفكرة؟</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="impact-high" name="impactLevel" value="تأثير كبير">
-                            <label for="impact-high">تأثير كبير</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="impact-medium" name="impactLevel" value="تأثير متوسط">
-                            <label for="impact-medium">تأثير متوسط</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="impact-low" name="impactLevel" value="تأثير محدود">
-                            <label for="impact-low">تأثير محدود</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>هل تود متابعة هذه الملاحظة؟</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="followup-yes" name="followup" value="نعم، أود المتابعة">
-                            <label for="followup-yes">نعم، أود المتابعة</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="followup-no" name="followup" value="لا، مجرد ملاحظة" checked>
-                            <label for="followup-no">لا، مجرد ملاحظة</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="improvementIdeas">اقتراحاتك للتحسين (اختياري)</label>
-                    <textarea id="improvementIdeas" placeholder="إذا كان لديك أفكار محددة للتحسين، اذكرها هنا..."></textarea>
-                </div>
-                
-                <div class="loading" id="loadingIndicator">
-                    <div class="loading-spinner"></div>
-                    <p>جاري إرسال البيانات...</p>
-                </div>
-                
-                <div class="error-message" id="errorMessage"></div>
-                
-                <div class="form-actions">
-                    <button type="submit" id="submitBtn">
-                        <i class="fas fa-paper-plane"></i> إرسال المقترح
-                    </button>
-                    <button type="button" class="secondary" id="resetBtn">
-                        <i class="fas fa-redo"></i> مسح النموذج
-                    </button>
-                </div>
-                
-                <div class="confirmation-message" id="confirmationMessage">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>شكراً لك على مشاركة رأيك!</h3>
-                    <p>تم استلام مقترحك بنجاح وسيتم دراسته من قبل الفريق المختص.</p>
-                    <p>رقم تتبع المقترح: <strong id="trackingNumber"></strong></p>
-                    <button type="button" class="secondary" onclick="resetForm()" style="margin-top: 15px;">
-                        <i class="fas fa-plus"></i> إرسال مقترح جديد
-                    </button>
-                </div>
-            </form>
-        </div>
+  <!-- الهيدر المعدل -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="https://j.top4top.io/p_3327lje811.jpg" alt="شعار المدرسة" class="logo">
+      <div class="school-name"> مدرسة محمد بن سليمان الغافري</div>
+      <div class="meeting-title">اللقاء التربوي بين الهيئة التعليمية وأولياء الأمور</div>
     </div>
+  </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('suggestionsForm');
-            const hiddenForm = document.getElementById('hiddenForm');
-            const resetBtn = document.getElementById('resetBtn');
-            const confirmationMessage = document.getElementById('confirmationMessage');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const errorMessage = document.getElementById('errorMessage');
-            const submitBtn = document.getElementById('submitBtn');
-            const hiddenFrame = document.getElementById('hiddenFrame');
-            
-            // رابط النشر
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyffiRewwsJczQXU2a1aUQR1yxiwaVkg-_EwFBBivxwHCQJfPMMGVpchslrae6NRY8Y/exec';
-            hiddenForm.action = SCRIPT_URL;
-            
-            // إرسال النموذج
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // التحقق من صحة البيانات
-                if (!validateForm()) {
-                    return;
-                }
-                
-                // إظهار مؤشر التحميل
-                loadingIndicator.style.display = 'block';
-                errorMessage.style.display = 'none';
-                submitBtn.disabled = true;
-                
-                try {
-                    // تعبئة النموذج المخفي بالبيانات
-                    document.getElementById('hiddenTimestamp').value = new Date().toLocaleString('ar-SA');
-                    document.getElementById('hiddenSenderType').value = document.getElementById('senderType').value;
-                    document.getElementById('hiddenFullName').value = document.getElementById('fullName').value;
-                    document.getElementById('hiddenContactInfo').value = document.getElementById('contactInfo').value;
-                    document.getElementById('hiddenStudentId').value = document.getElementById('studentId').value || 'غير محدد';
-                    document.getElementById('hiddenSuggestionType').value = document.querySelector('input[name="suggestionType"]:checked').value;
-                    document.getElementById('hiddenCategory').value = document.getElementById('suggestionCategory').value;
-                    document.getElementById('hiddenTitle').value = document.getElementById('suggestionTitle').value;
-                    document.getElementById('hiddenDetails').value = document.getElementById('suggestionDetails').value;
-                    document.getElementById('hiddenImpact').value = document.querySelector('input[name="impactLevel"]:checked')?.value || 'غير محدد';
-                    document.getElementById('hiddenFollowup').value = document.querySelector('input[name="followup"]:checked').value;
-                    document.getElementById('hiddenImprovementIdeas').value = document.getElementById('improvementIdeas').value || 'لا توجد';
-                    
-                    console.log('بيانات النموذج المرسلة:', {
-                        timestamp: document.getElementById('hiddenTimestamp').value,
-                        senderType: document.getElementById('hiddenSenderType').value,
-                        fullName: document.getElementById('hiddenFullName').value,
-                        contactInfo: document.getElementById('hiddenContactInfo').value,
-                        studentId: document.getElementById('hiddenStudentId').value,
-                        suggestionType: document.getElementById('hiddenSuggestionType').value,
-                        category: document.getElementById('hiddenCategory').value,
-                        title: document.getElementById('hiddenTitle').value,
-                        details: document.getElementById('hiddenDetails').value,
-                        impact: document.getElementById('hiddenImpact').value,
-                        followup: document.getElementById('hiddenFollowup').value,
-                        improvementIdeas: document.getElementById('hiddenImprovementIdeas').value
-                    });
-                    
-                    // إرسال النموذج المخفي
-                    hiddenForm.submit();
-                    
-                    // بعد 3 ثوانٍ، نفترض أن الإرسال نجح (لأننا لا نستطيع قراءة الرد من iframe بسبب CORS)
-                    setTimeout(function() {
-                        // إخفاء النموذج وإظهار رسالة التأكيد
-                        form.style.display = 'none';
-                        confirmationMessage.style.display = 'block';
-                        
-                        // إنشاء رقم تتبع عشوائي (لأننا لا نستطيع الحصول على الرد الحقيقي)
-                        const trackingId = 'TRK-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-                        document.getElementById('trackingNumber').textContent = trackingId;
-                        
-                        loadingIndicator.style.display = 'none';
-                        submitBtn.disabled = false;
-                    }, 3000);
-                    
-                } catch (error) {
-                    console.error('خطأ في الإرسال:', error);
-                    errorMessage.textContent = `❌ فشل في إرسال البيانات: ${error.message}. يرجى المحاولة مرة أخرى.`;
-                    errorMessage.style.display = 'block';
-                    loadingIndicator.style.display = 'none';
-                    submitBtn.disabled = false;
-                }
-            });
-            
-            // التحقق من صحة النموذج
-            function validateForm() {
-                const requiredFields = form.querySelectorAll('[required]');
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        isValid = false;
-                        field.style.borderColor = 'var(--danger)';
-                    } else {
-                        field.style.borderColor = '#e0e0e0';
-                    }
-                });
-                
-                // التحقق من اختيار نوع المقترح
-                const suggestionTypeSelected = document.querySelector('input[name="suggestionType"]:checked');
-                if (!suggestionTypeSelected) {
-                    isValid = false;
-                    errorMessage.textContent = '❌ يرجى اختيار نوع المقترح';
-                    errorMessage.style.display = 'block';
-                }
-                
-                if (!isValid && !errorMessage.textContent) {
-                    errorMessage.textContent = '❌ يرجى ملء جميع الحقول الإلزامية';
-                    errorMessage.style.display = 'block';
-                }
-                
-                return isValid;
+  <div class="app">
+    <div class="container">
+      <div class="card-content">
+        <header>
+          <h1>تسجيل حضور أولياء الأمور</h1>
+          <div class="subtitle">
+            سجّل حضور ولي الأمر وحدد الأبناء الذين تمت مناقشة تحصيلهم في هذا اللقاء التربوي.
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">
+              <span class="badge-dot"></span>
+              ملتقى أولياء الأمور
+            </span>
+            <span class="badge">
+              <span class="badge-dot"></span>
+              رصد ذكي للحضور
+            </span>
+          </div>
+
+          <!-- شريط الإحصاءات العلوي -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-label">أولياء الأمور الحاضرون</div>
+              <div class="stat-value" id="statsParents">0</div>
+              <div class="stat-sub">عدد الأفراد المسجلين فعليًا</div>
+            </div>
+            <div class="stat-card highlight">
+              <div class="stat-label">الطلبة الذين تمت مناقشتهم</div>
+              <div class="stat-value" id="statsStudents">0</div>
+              <div class="stat-sub">من تم السؤال عنهم خلال اللقاء</div>
+            </div>
+            <div class="stat-card success">
+              <div class="stat-label">نسبة حضور أولياء الأمور</div>
+              <div class="stat-value" id="statsPercent">0%</div>
+              <div class="stat-sub">من إجمالي الطلبة المقيدين بالمدرسة</div>
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <!-- حقل ولي الأمر مع بحث -->
+          <div class="field">
+            <label for="parentInput">ولي الأمر</label>
+            <div class="parent-wrapper">
+              <input type="text"
+                     id="parentInput"
+                     placeholder="اكتب أول الاسم (مثال: سالم، محمد، سعيد)..."
+                     autocomplete="off">
+              <div id="parentSuggestions" class="suggestions" style="display:none;"></div>
+            </div>
+            <div class="hint">
+              الأسماء تُجلب من ورقة <strong>"قاعدة البيانات"</strong> (عمود ولي الأمر).  
+              اكتب بداية الاسم وستظهر الأسماء المشابهة لاختيارها.
+            </div>
+          </div>
+
+          <!-- رقم الهاتف -->
+          <div class="field">
+            <label for="phoneInput">رقم الهاتف</label>
+            <input type="tel"
+                   id="phoneInput"
+                   placeholder="رقم الهاتف أو رمز مناسب (يمكن كتابة - عند الحاجة)">
+            <div class="hint">
+              الهدف توثيق وسيلة تواصل أساسية لولي الأمر الحاضر.
+            </div>
+          </div>
+
+          <!-- الأبناء -->
+          <div class="field children-wrapper">
+            <label>أبناء هذا الولي (اختر من تمّت مناقشة تحصيله)</label>
+            <div id="childrenContainer" class="children-list">
+              <span class="hint">اختر ولي أمر أولاً لعرض أبنائه.</span>
+            </div>
+          </div>
+        </main>
+
+        <footer>
+          <button id="saveBtn" class="btn btn-primary" onclick="saveData()">
+            <span>حفظ الحضور</span>
+            <span class="btn-icon">✔️</span>
+          </button>
+
+          <div id="status" class="status"></div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- الشريط السفلي الثابت للإجمالي -->
+  <div class="bottom-bar">
+    <div class="bottom-item">
+      <span class="bottom-label">إجمالي أولياء الأمور المسجلين:</span>
+      <span class="bottom-value" id="bottomParents">0</span>
+    </div>
+    <div class="bottom-item">
+      <span class="bottom-label">إجمالي الطلبة الذين نوقشوا:</span>
+      <span class="bottom-value" id="bottomStudents">0</span>
+    </div>
+  </div>
+
+  <script>
+    // إزالة دالة العودة لمنصة التواصل
+
+    // تحديث الوقت والتاريخ (إن كان مطلوباً)
+    function updateDateTime() {
+      // يمكن إضافة الوقت والتاريخ إذا كان مطلوباً في المستقبل
+    }
+
+    let parentsList = [];
+    const parentInput = document.getElementById('parentInput');
+    const parentSuggestions = document.getElementById('parentSuggestions');
+    const phoneInput = document.getElementById('phoneInput');
+    const childrenContainer = document.getElementById('childrenContainer');
+    const statusDiv = document.getElementById('status');
+    const saveBtn = document.getElementById('saveBtn');
+
+    const statsParentsEl = document.getElementById('statsParents');
+    const statsStudentsEl = document.getElementById('statsStudents');
+    const statsPercentEl = document.getElementById('statsPercent');
+
+    const bottomParentsEl = document.getElementById('bottomParents');
+    const bottomStudentsEl = document.getElementById('bottomStudents');
+
+    function setStatus(message, type) {
+      statusDiv.textContent = message || '';
+      statusDiv.className = 'status' + (type ? ' ' + type : '');
+      if (message && type === 'success') {
+        setTimeout(function() {
+          statusDiv.textContent = '';
+          statusDiv.className = 'status';
+        }, 4000);
+      }
+    }
+
+    function setLoading(isLoading) {
+      saveBtn.disabled = isLoading;
+      saveBtn.innerHTML = isLoading
+        ? '<span>جارٍ الحفظ...</span><span class="btn-icon">⏳</span>'
+        : '<span>حفظ الحضور</span><span class="btn-icon">✔️</span>';
+    }
+
+    function updateBottomBar(parentsCount, studentsCount) {
+      bottomParentsEl.textContent = parentsCount || '0';
+      bottomStudentsEl.textContent = studentsCount || '0';
+    }
+
+    // تحميل الإحصاءات من واجهة البرنامج (G6, G7, G8)
+    function loadStats() {
+      google.script.run
+        .withSuccessHandler(function(stats) {
+          if (!stats) return;
+          const parents = stats.parentsCount || 0;
+          const students = stats.studentsCount || 0;
+
+          statsParentsEl.textContent  = parents;
+          statsStudentsEl.textContent = students;
+
+          let p = stats.percentAttendance || '0%';
+          if (/^\d+(\.\d+)?$/.test(p)) {
+            p = p + '%';
+          }
+          statsPercentEl.textContent = p;
+
+          // تحديث الشريط السفلي
+          updateBottomBar(parents, students);
+        })
+        .withFailureHandler(function(err) {
+          console.log('خطأ في تحميل الإحصاءات:', err.message);
+        })
+        .getDashboardStats();
+    }
+
+    // تحميل قائمة أولياء الأمور من السكربت
+    function loadParents() {
+      setStatus('جاري تحميل بيانات أولياء الأمور...', 'info');
+      google.script.run
+        .withSuccessHandler(function(parents) {
+          parentsList = parents || [];
+          if (!parentsList.length) {
+            setStatus('لا توجد بيانات لأولياء الأمور في ورقة "قاعدة البيانات".', 'error');
+          } else {
+            setStatus('', '');
+          }
+        })
+        .withFailureHandler(function(err) {
+          setStatus('حدث خطأ أثناء تحميل أولياء الأمور: ' + err.message, 'error');
+        })
+        .getParentsList();
+    }
+
+    function filterParents(term) {
+      term = term.trim();
+      if (!term) return parentsList.slice(0, 15);
+      const lower = term.toLowerCase();
+      return parentsList
+        .filter(function(p) { return p.toLowerCase().indexOf(lower) !== -1; })
+        .slice(0, 15);
+    }
+
+    function renderSuggestions() {
+      const term = parentInput.value;
+      const matches = filterParents(term);
+
+      if (!matches.length) {
+        parentSuggestions.style.display = 'none';
+        parentSuggestions.innerHTML = '';
+        return;
+      }
+
+      parentSuggestions.innerHTML = '';
+      matches.forEach(function(name) {
+        const item = document.createElement('div');
+        item.className = 'suggestion-item';
+
+        const mainSpan = document.createElement('span');
+        const t = term.trim();
+        if (t) {
+          const regex = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i');
+          const parts = name.split(regex);
+          parts.forEach(function(part) {
+            if (regex.test(part)) {
+              const spanHighlight = document.createElement('span');
+              spanHighlight.className = 'suggestion-highlight';
+              spanHighlight.textContent = part;
+              mainSpan.appendChild(spanHighlight);
+            } else {
+              mainSpan.appendChild(document.createTextNode(part));
             }
-            
-            // إعادة تعيين النموذج
-            resetBtn.addEventListener('click', function() {
-                resetForm();
-            });
-            
-            // دالة عامة لإعادة التعيين
-            window.resetForm = function() {
-                form.reset();
-                confirmationMessage.style.display = 'none';
-                errorMessage.style.display = 'none';
-                form.style.display = 'block';
-                loadingIndicator.style.display = 'none';
-                
-                // إعادة تعيين ألوان الحدود
-                const fields = form.querySelectorAll('input, select, textarea');
-                fields.forEach(field => {
-                    field.style.borderColor = '#e0e0e0';
-                });
-            };
-            
-            // إضافة تحقق فوري للحقول الإلزامية
-            const requiredFields = form.querySelectorAll('[required]');
-            requiredFields.forEach(field => {
-                field.addEventListener('blur', function() {
-                    if (!this.value.trim()) {
-                        this.style.borderColor = 'var(--danger)';
-                    } else {
-                        this.style.borderColor = '#e0e0e0';
-                    }
-                });
-            });
+          });
+        } else {
+          mainSpan.textContent = name;
+        }
+
+        const tag = document.createElement('span');
+        tag.className = 'suggestion-tag';
+        tag.textContent = 'ولي أمر';
+
+        item.appendChild(mainSpan);
+        item.appendChild(tag);
+
+        item.addEventListener('click', function() {
+          selectParent(name);
         });
-    </script>
+
+        parentSuggestions.appendChild(item);
+      });
+
+      parentSuggestions.style.display = 'block';
+    }
+
+    function selectParent(name) {
+      parentInput.value = name;
+      parentSuggestions.style.display = 'none';
+      loadChildrenForParent(name);
+    }
+
+    function loadChildrenForParent(parentName) {
+      childrenContainer.innerHTML =
+        '<span class="hint">جاري جلب الأبناء المرتبطين بهذا الولي...</span>';
+
+      google.script.run
+        .withSuccessHandler(function(children) {
+          childrenContainer.innerHTML = '';
+          if (!children || !children.length) {
+            childrenContainer.innerHTML =
+              '<span class="hint">لا يوجد أبناء مسجلون لهذا الولي في "قاعدة البيانات".</span>';
+            return;
+          }
+
+          children.forEach(function(ch, index) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'child-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = 'child_' + index;
+            checkbox.dataset.student = ch.student || '';
+            checkbox.dataset.klass = ch.klass || '';
+
+            checkbox.addEventListener('change', function() {
+              if (checkbox.checked) {
+                wrapper.classList.add('active');
+              } else {
+                wrapper.classList.remove('active');
+              }
+            });
+
+            const label = document.createElement('label');
+            label.setAttribute('for', checkbox.id);
+
+            const spanMain = document.createElement('span');
+            spanMain.className = 'child-label-main';
+            spanMain.textContent = ch.student || 'طالب بدون اسم';
+
+            const spanClass = document.createElement('span');
+            spanClass.className = 'child-label-class';
+            if (ch.klass) {
+              spanClass.textContent = '(' + ch.klass + ')';
+            }
+
+            label.appendChild(spanMain);
+            label.appendChild(spanClass);
+
+            wrapper.appendChild(checkbox);
+            wrapper.appendChild(label);
+            childrenContainer.appendChild(wrapper);
+          });
+        })
+        .withFailureHandler(function(err) {
+          childrenContainer.innerHTML =
+            '<span class="hint">حدث خطأ أثناء جلب الأبناء: ' + err.message + '</span>';
+        })
+        .getChildrenForParent(parentName);
+    }
+
+    parentInput.addEventListener('input', function() {
+      const val = parentInput.value || '';
+      if (!val.trim()) {
+        if (parentsList.length) {
+          renderSuggestions();
+        } else {
+          parentSuggestions.style.display = 'none';
+        }
+        childrenContainer.innerHTML =
+          '<span class="hint">اختر ولي أمر لعرض أبنائه.</span>';
+        return;
+      }
+      renderSuggestions();
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.parent-wrapper')) {
+        parentSuggestions.style.display = 'none';
+      }
+    });
+
+    function saveData() {
+      setStatus('', '');
+      const parentName = (parentInput.value || '').trim();
+      const phone = (phoneInput.value || '').trim();
+
+      if (!parentName) {
+        setStatus('الرجاء كتابة/اختيار اسم ولي الأمر من القائمة المقترحة.', 'error');
+        parentInput.focus();
+        return;
+      }
+
+      if (parentsList.length && !parentsList.includes(parentName)) {
+        setStatus('الاسم المدخل لا يطابق أي ولي أمر في قاعدة البيانات. الرجاء اختيار الاسم من القائمة.', 'error');
+        parentInput.focus();
+        renderSuggestions();
+        return;
+      }
+
+      if (!phone) {
+        setStatus('الرجاء إدخال رقم الهاتف (يمكن إدخال - عند الحاجة).', 'error');
+        phoneInput.focus();
+        return;
+      }
+
+      const checkboxes = childrenContainer.querySelectorAll('input[type="checkbox"]');
+      const chosen = [];
+      checkboxes.forEach(function(cb) {
+        if (cb.checked) {
+          chosen.push({
+            student: cb.dataset.student,
+            klass: cb.dataset.klass
+          });
+        }
+      });
+
+      if (!chosen.length) {
+        setStatus('الرجاء اختيار طالب واحد على الأقل تمّت مناقشة تحصيله.', 'error');
+        return;
+      }
+
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function(result) {
+          setLoading(false);
+          if (!result) {
+            setStatus('لم يصل رد من الخادم.', 'error');
+            return;
+          }
+
+          let msg = result.message || '';
+          if (result.duplicates && result.duplicates.length) {
+            msg += ' | تم تخطي المكررين: ' + result.duplicates.join(', ');
+          }
+          setStatus(msg, 'success');
+
+          // تحديث الإحصاءات بعد الحفظ (وسينعكس على الشريط السفلي)
+          loadStats();
+
+          // تهيئة كاملة لولي أمر جديد
+          parentInput.value = '';
+          phoneInput.value = '';
+          parentSuggestions.style.display = 'none';
+          childrenContainer.innerHTML =
+            '<span class="hint">اختر ولي أمر لعرض أبنائه.</span>';
+
+          parentInput.focus();
+        })
+        .withFailureHandler(function(err) {
+          setLoading(false);
+          setStatus('حدث خطأ أثناء الحفظ: ' + err.message, 'error');
+        })
+        .saveAttendance(parentName, phone, chosen);
+    }
+
+    function initApp() {
+      loadParents();
+      loadStats();
+      parentInput.focus();
+    }
+
+    window.addEventListener('load', initApp);
+  </script>
 </body>
 </html>
